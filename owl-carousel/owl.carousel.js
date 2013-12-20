@@ -77,7 +77,13 @@ if ( typeof Object.create !== "function" ) {
 			if(base.$elem.children().length === 0){return false}
 			base.baseClass();
 			base.eventTypes();
-			base.$userItems = base.$elem.children();
+            
+            if(base.options.userItem === false){
+                base.$userItems = base.$elem.children();
+            }else{
+                base.$userItems = base.$elem.children(base.options.userItem);
+            }
+
 			base.itemsAmount = base.$userItems.length;
 			base.wrapItems();
 			base.$owlItems = base.$elem.find(".owl-item");
@@ -1414,6 +1420,7 @@ if ( typeof Object.create !== "function" ) {
 		itemsTablet : [768,2],
 		itemsTabletSmall : false,
 		itemsMobile : [479,1],
+        userItem: false,
 		singleItem : false,
 		itemsScaleUp : false,
 
